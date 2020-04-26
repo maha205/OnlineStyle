@@ -1,0 +1,288 @@
+{% extends 'base_admin.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style type="text/css">
+    body {
+        color: #566787;
+		background: #20222A;
+		font-family: 'Varela Round', sans-serif;
+		font-size: 13px;
+	}
+	.table-wrapper {
+        background: #fff;
+        padding: 20px 25px;
+        margin: 30px auto;
+		border-radius: 3px;
+        box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    }
+	.table-wrapper .btn {
+		float: right;
+		color: #333;
+    	background-color: #fff;
+		border-radius: 3px;
+		border: none;
+		outline: none !important;
+		margin-left: 10px;
+	}
+	.table-wrapper .btn:hover {
+        color: #333;
+		background: #f2f2f2;
+	}
+	.table-wrapper .btn.btn-primary {
+		color: #fff;
+		background: #03A9F4;
+	}
+	.table-wrapper .btn.btn-primary:hover {
+		background: #03a3e7;
+	}
+	.table-title .btn {		
+		font-size: 13px;
+		border: none;
+	}
+	.table-title .btn i {
+		float: left;
+		font-size: 21px;
+		margin-right: 5px;
+	}
+	.table-title .btn span {
+		float: left;
+		margin-top: 2px;
+	}
+	.table-title {
+		color: #fff;
+		background: #4b5366;		
+		padding: 16px 25px;
+		margin: -20px -25px 10px;
+		border-radius: 3px 3px 0 0;
+    }
+    .table-title h2 {
+		margin: 5px 0 0;
+		font-size: 24px;
+	}
+	.show-entries select.form-control {        
+        width: 60px;
+		margin: 0 5px;
+	}
+	.table-filter .filter-group {
+        float: right;
+		margin-left: 15px;
+    }
+	.table-filter input, .table-filter select {
+		height: 34px;
+		border-radius: 3px;
+		border-color: #ddd;
+        box-shadow: none;
+	}
+	.table-filter {
+		padding: 5px 0 15px;
+		border-bottom: 1px solid #e9e9e9;
+		margin-bottom: 5px;
+	}
+	.table-filter .btn {
+		height: 34px;
+	}
+	.table-filter label {
+		font-weight: normal;
+		margin-left: 10px;
+	}
+	.table-filter select, .table-filter input {
+		display: inline-block;
+		margin-left: 5px;
+	}
+	.table-filter input {
+		width: 200px;
+		display: inline-block;
+	}
+	.filter-group select.form-control {
+		width: 110px;
+	}
+	.filter-icon {
+		float: right;
+		margin-top: 7px;
+	}
+	.filter-icon i {
+		font-size: 18px;
+		opacity: 0.7;
+	}	
+    table.table tr th, table.table tr td {
+        border-color: #e9e9e9;
+		padding: 12px 15px;
+		vertical-align: middle;
+    }
+	table.table tr th:first-child {
+		width: 60px;
+	}
+	table.table tr th:last-child {
+		width: 80px;
+	}
+    table.table-striped tbody tr:nth-of-type(odd) {
+    	background-color: #fcfcfc;
+	}
+	table.table-striped.table-hover tbody tr:hover {
+		background: #f5f5f5;
+	}
+    table.table th i {
+        font-size: 13px;
+        margin: 0 5px;
+        cursor: pointer;
+    }	
+	table.table td a {
+		font-weight: bold;
+		color: #566787;
+		display: inline-block;
+		text-decoration: none;
+	}
+	table.table td a:hover {
+		color: #2196F3;
+	}
+	table.table td a.view {        
+		width: 30px;
+		height: 30px;
+		color: #2196F3;
+		border: 2px solid;
+		border-radius: 30px;
+		text-align: center;
+    }
+    table.table td a.view i {
+        font-size: 22px;
+		margin: 2px 0 0 1px;
+    }   
+	table.table .avatar {
+		border-radius: 50%;
+		vertical-align: middle;
+		margin-right: 10px;
+	}
+	.status {
+		font-size: 30px;
+		margin: 2px 2px 0 0;
+		display: inline-block;
+		vertical-align: middle;
+		line-height: 10px;
+	}
+    .text-success {
+        color: #10c469;
+    }
+    .text-info {
+        color: #62c9e8;
+    }
+    .text-warning {
+        color: #FFC107;
+    }
+    .text-danger {
+        color: #ff5b5b;
+    }
+    .pagination {
+        float: right;
+        margin: 0 0 5px;
+    }
+    .pagination li a {
+        border: none;
+        font-size: 13px;
+        min-width: 30px;
+        min-height: 30px;
+        color: #999;
+        margin: 0 2px;
+        line-height: 30px;
+        border-radius: 2px !important;
+        text-align: center;
+        padding: 0 6px;
+    }
+    .pagination li a:hover {
+        color: #666;
+    }	
+    .pagination li.active a {
+        background: #03A9F4;
+    }
+    .pagination li.active a:hover {        
+        background: #0397d6;
+    }
+	.pagination li.disabled i {
+        color: #ccc;
+    }
+    .pagination li i {
+        font-size: 16px;
+        padding-top: 6px
+    }
+    .hint-text {
+        float: left;
+        margin-top: 10px;
+        font-size: 13px;
+    }    
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<!--Fontawesome CDN-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+</head>
+<body>
+
+<center>
+{% if messages %}
+ {% for message in messages %}
+ <div class="alert alert-warning alert-dismissable" role="alert">
+ <button class="close" data-dismiss="alert">
+ <small><sup>x</sup></small>
+ </button>
+ {{ message }}
+ </div>
+ {% endfor%}
+{% endif %}
+</center>
+<br/>
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-4">
+						<h2>Order Details: {{user.fullname}}</h2>
+					</div>
+                </div>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead> 
+                    <tr>
+						<th>Order Date</th>						
+                        <th>Status</th>							
+                        <th>Order Details</th>							
+						<th>Total Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for order in orders%}
+                    <tr>
+						<td>{{order.date}}</td>
+                        {% if order.status == 0%}<td><span class="status text-danger">&bull;</span> Cancle </td>{% endif%}                        
+                        {% if order.status == 1%}<td><span class="status text-success">&bull;</span> Complete </td>{% endif%}                        
+                        {% if order.status == 2%}<td><span class="status text-warning">&bull;</span> Tracking </td>{% endif%}    
+                        <td ><a href="{% url 'displayOrder' order.id%}" class =" fas fa-search-plus " style="color:green"></a>
+
+						{% if order.status == 0%}<span class =" fas fa-edit " ></span>{%endif%}
+					    {% if order.status == 1%}<span class =" fas fa-edit "></span>{%endif%}                        
+						{% if order.status == 2%}<a href="{% url 'editOrderUser' order.id%}" class =" fas fa-edit " style="color:orange"></a>{%endif%}
+
+
+                        {% if order.status == 0%}<a href="{% url 'deleteOrderUser' order.id%}" class =" fas fa-trash" style="color:red"></a></td>{%endif%}
+                        {% if order.status == 1%}<a href="{% url 'deleteOrderUser' order.id%}" class =" fas fa-trash" style="color:red"></a></td>{%endif%}
+                        {% if order.status == 2%}<span class =" fas fa-trash" ></span></td>{%endif%}
+						<td>{{order.total_price}}₪</td>
+                    </tr>
+                 {% endfor%}
+                </tbody>
+            </table>
+		
+    </div>     
+</body>
+</html>     
+{% endblock content %}                           		                            

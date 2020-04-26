@@ -1,0 +1,228 @@
+<style>
+
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+
+.navbar-icon-top .navbar-nav .nav-link > .fa {
+  position: relative;
+  width: 36px;
+  font-size: 24px;
+}
+
+.navbar-icon-top .navbar-nav .nav-link > .fa > .badge {
+  font-size: 0.75rem;
+  position: absolute;
+  right: 0;
+  font-family: sans-serif;
+}
+
+.navbar-icon-top .navbar-nav .nav-link > .fa {
+  top: 3px;
+  line-height: 12px;
+}
+
+.navbar-icon-top .navbar-nav .nav-link > .fa > .badge {
+  top: -10px;
+}
+
+@media (min-width: 576px) {
+  .navbar-icon-top.navbar-expand-sm .navbar-nav .nav-link {
+    text-align: center;
+    display: table-cell;
+    height: 70px;
+    vertical-align: middle;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .navbar-icon-top.navbar-expand-sm .navbar-nav .nav-link > .fa {
+    display: block;
+    width: 48px;
+    margin: 2px auto 4px auto;
+    top: 0;
+    line-height: 24px;
+  }
+
+  .navbar-icon-top.navbar-expand-sm .navbar-nav .nav-link > .fa > .badge {
+    top: -7px;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar-icon-top.navbar-expand-md .navbar-nav .nav-link {
+    text-align: center;
+    display: table-cell;
+    height: 70px;
+    vertical-align: middle;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .navbar-icon-top.navbar-expand-md .navbar-nav .nav-link > .fa {
+    display: block;
+    width: 48px;
+    margin: 2px auto 4px auto;
+    top: 0;
+    line-height: 24px;
+  }
+
+  .navbar-icon-top.navbar-expand-md .navbar-nav .nav-link > .fa > .badge {
+    top: -7px;
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link {
+    text-align: center;
+    display: table-cell;
+    height: 70px;
+    vertical-align: middle;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link > .fa {
+    display: block;
+    width: 48px;
+    margin: 2px auto 4px auto;
+    top: 0;
+    line-height: 24px;
+  }
+
+  .navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link > .fa > .badge {
+    top: -7px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .navbar-icon-top.navbar-expand-xl .navbar-nav .nav-link {
+    text-align: center;
+    display: table-cell;
+    height: 70px;
+    vertical-align: middle;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .navbar-icon-top.navbar-expand-xl .navbar-nav .nav-link > .fa {
+    display: block;
+    width: 48px;
+    margin: 2px auto 4px auto;
+    top: 0;
+    line-height: 24px;
+  }
+
+  .navbar-icon-top.navbar-expand-xl .navbar-nav .nav-link > .fa > .badge {
+    top: -7px;
+  }
+}
+
+</style>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
+<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark" >
+  <a class="navbar-brand" href="#" style="color:#F7EC09">OnlineStyle |</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'administration' %}" style="color:#F7EC09">
+          <i class="fa fa-home" style="color:#F7EC09"></i>
+          Home
+          <span class="sr-only">(current)</span>
+          </a>
+
+         <li class="nav-item">
+        <a class="nav-link" href="{% url 'settingAdmin'%}" style="color:#F7EC09">
+          <i class="fa " style="color:#F7EC09">
+            <span style="color:#F7EC09" class="fas fa-user-cog"></span>
+          </i>
+          Settings
+        </a>
+        </li>
+
+         <li class="nav-item">
+        <a class="nav-link" href="{% url 'registrAdmin' %}" style="color:#F7EC09">
+          <i class="fa " style="color:#F7EC09">
+            <span style="color:#F7EC09" class="fas fa-user-plus"></span>
+          </i>
+          Add admin
+        </a>
+        </li>
+    
+    
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'Usersanagement'%}" style="color:#F7EC09">
+          <i class="fa " style="color:#F7EC09">
+            <span style="color:#F7EC09" class="fa-user"></span>
+          </i>
+          Users
+        </a>
+        </li>
+
+      <li class="nav-item">
+             <a class="nav-link" href="{% url 'productShow_admin' %}" style="color:#F7EC09">          
+             <i style="color:#F7EC09" class="fa  ">
+            <span style="color:#F7EC09" class="fas fa-cogs" ></span>
+          </i>
+          
+          Stock
+        </a>
+      </li>
+      
+
+       <li class="nav-item">
+             <a class="nav-link" href="{% url 'sales' %}" style="color:#F7EC09">          
+             <i style="color:#F7EC09" class="fa  " >
+            <span style="color:#F7EC09" class="fas fa-tags" ></span>
+          </i>
+          Sales
+        </a>
+      </li>       
+      
+      <li class="nav-item">
+             <a class="nav-link" href="{% url 'allOrders' %}" style="color:#F7EC09">          
+             <i style="color:#F7EC09" class="fa  " >
+            <span style="color:#F7EC09" class="fas fa-wallet" ></span>
+          </i>
+          Orders
+        </a>
+      </li>
+
+
+        <li class="nav-item">
+             <a class="nav-link" href="{% url 'reports' %}" style="color:#F7EC09">          
+             <i style="color:#F7EC09" class="fa  ">
+            <span style="color:#F7EC09" class="fas fa-chart-bar"></span>
+          </i>
+          Reports
+        </a>
+      </li>
+    </ul> 
+
+     <ul class="navbar-nav ">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'home' %}" style="color:#F7EC09">
+          <i class="fa  " style="color:#F7EC09">
+            <span  class="fas fa-sign-out-alt" style="color:#F7EC09"></span>
+          </i>
+          logout
+        </a>
+      </li>
+      </ul>
+</nav>
+
+{% block content %}
+{% endblock content %}
+
+
+

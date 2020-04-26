@@ -1,0 +1,61 @@
+{% extends 'base_admin.html' %}
+{% block content %}
+
+<center>
+{% if messages %}
+ {% for message in messages %}
+ <div class="alert alert-warning alert-dismissable" role="alert">
+ <button class="close" data-dismiss="alert">
+ <small><sup>x</sup></small>
+ </button>
+ {{ message }}
+ </div>
+ {% endfor%}
+{% endif %}
+</center> 
+
+
+<body>
+</br>
+
+ {% if item %}
+ <form class="form-inline my-2 my-lg-0" method="POST">
+ {% csrf_token %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
+<b style="margin-left: 500px;">
+<h1 style="color:#F7EC09"><span style="background-color:#20222A"># The Top Selling Product #</span> </h1>
+
+  <h5><span style = "text-decoration: underline; margin-left: 25px;" > Title: </span> {{item.title}}</h5>
+  <h5><span style = "text-decoration: underline; margin-left: 25px;" >Description: </span> {{item.description}}</h5>
+  <h5><span style = "text-decoration: underline; margin-left: 25px;" >Price before the sale: </span>{{item.price}} ₪</h5>
+  <h5><span style = "text-decoration: underline; margin-left: 25px;" >Quntaty S:</span> {{item.qty_small}}</h5>
+  <h5><span style = "text-decoration: underline; margin-left: 25px;" >Quntaty M:</span> {{item.qty_medium}}</h5>
+  <h5><span style = "text-decoration: underline; margin-left: 25px;" >Quntaty L:</span> {{item.qty_large}}</h5>
+  <h5><span style = "text-decoration: underline; margin-left: 25px;" >Quntaty X:</span> {{item.qty_xtraLarge}}</h5>
+
+<center>
+  <h5><img class="pic-1" src="https://i.pinimg.com/originals/e5/08/8d/e5088db4d07b54c0846acbff0e41666b.jpg" style="width:200; height:200;"></h5>
+</center>
+</b>
+ 
+
+ <br/><b style = " margin-left: 500px; font-size:20px;"><label>
+ </br>
+   <i class="fa  " style="color:black">
+   <span  class="fas fa-edit" style="color:red"></span>
+   </i>
+ 
+ <a href="{% url 'setTopSale' item.id%}" > Do you want to set up an offer for this product? </a>
+
+
+ </form>
+ {% endif %}
+
+</body>
+{% endblock %}

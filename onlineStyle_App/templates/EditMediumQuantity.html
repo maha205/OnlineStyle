@@ -1,0 +1,60 @@
+{% extends 'base_admin.html' %}
+{% block content %}
+
+<center>
+{% if messages %}
+ {% for message in messages %}
+ <div class="alert alert-warning alert-dismissable" role="alert">
+ <button class="close" data-dismiss="alert">
+ <small><sup>x</sup></small>
+ </button>
+ {{ message }}
+ </div>
+ {% endfor%}
+{% endif %}
+</center> 
+
+
+<body>
+</br>
+
+ {% if item %}
+ <form class="form-inline my-2 my-lg-0" method="POST">
+ {% csrf_token %}
+
+
+<b style="margin-left: 500px;">
+<h1 style="color:#F7EC09"><span style="background-color:#20222A">Edit the quantity of product </span> </h1>
+
+  <h5><span style = "text-decoration: underline; margin-left: 25px;" > Title: </span> {{item.title}}</h5>
+  <h5><span style = "text-decoration: underline; margin-left: 25px;" >Description: </span> {{item.description}}</h5>
+  <h5><span style = "text-decoration: underline; margin-left: 25px;" >Price before the sale: </span>{{item.price}}₪</h5>
+<center>
+  <h5><img class="pic-1" src="https://i.pinimg.com/originals/e5/08/8d/e5088db4d07b54c0846acbff0e41666b.jpg" style="width:200; height:200;"></h5>
+</center>
+</b>
+ 
+ <input type="hidden" value="{{item.price}}" name="price">
+ <input type="hidden" value="{{item.description}}" name="description">
+ <input type="hidden" value="{{item.title}}" name="title">
+ <input type="hidden" value="{{item.qty_small}}" name="qty_small">
+ <input type="hidden" value="{{item.qty_large}}" name="qty_large">
+ <input type="hidden" value="{{item.qty_xtraLarge}}" name="qty_xtraLarge">
+ <input type="hidden" value="{{item.category.id}}" name="category">
+
+
+ <br/><b style = " margin-left: 500px; font-size:20px;"><label>
+ </br>
+   <i class="fa  " style="color:black">
+   <span  class="fas fa-edit" style="color:red"></span>
+   </i>
+ 
+  # The M Quntaty is:<input class="form-control mr-sm-2" type="search" placeholder="{{item.qty_medium}}" value="{{item.qty_medium}}" aria-label="Search" name="qty_medium" style="top:-20"><br/>
+ <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Edit Item</button>
+
+
+ </form>
+ {% endif %}
+
+</body>
+{% endblock %}

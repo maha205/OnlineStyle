@@ -1,0 +1,150 @@
+{% extends 'base_user.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<head>
+<center>
+{% if messages %}
+ {% for message in messages %}
+ <div class="alert alert-warning alert-dismissable" role="alert">
+ <button class="close" data-dismiss="alert">
+ <small><sup>x</sup></small>
+ </button>
+ {{ message }}
+ </div>
+ {% endfor%}
+{% endif %}
+</center>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+</head>
+
+<body>
+
+  <!-- Page Content -->
+  <div class="container"> 
+    
+
+<!-- Images Header -->
+<!DOCTYPE html>
+<html lang="en">
+<br/>
+<br/>
+<br/>
+
+<head>
+  <style>
+  /* Make the image fully responsive */
+  .carousel-inner img {
+    width: 100%;
+    height: 70%;
+  }
+  </style>
+</head>
+<body>
+
+<div id="demo" class="carousel slide" data-ride="carousel" >
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active" ></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+  </ul>
+
+
+  <div class="carousel-inner" >
+    <div class="carousel-item active">
+      <img src="https://previews.123rf.com/images/happymia/happymia1708/happymia170800027/86858857-wedding-dress-online-shop-banner-with-hanger-and-ladies-vector-illustration.jpg" alt="New York" width="1100" height="500">  
+    </div>
+
+
+    <div class="carousel-item">
+      <img src="https://d3gyiijzpk1c44.cloudfront.net/upload/carousel_photos/base/0/9/195/639827.1.jpg" alt="Chicago" width="1100" height="500">  
+    </div>
+
+
+    <div class="carousel-item">
+      <img src="https://cdn11.bigcommerce.com/s-dyryldkth6/images/stencil/original/carousel/180/SALEONSALE_Graphic_1500x1050.jpg?c=2" alt="Los Angeles" width="1100" height="500">
+    </div>
+  </div>
+
+
+  <a class="carousel-control-prev" href="#demo" data-slide="prev" >
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+</div>
+
+</body>
+</html>
+
+
+  <br/>
+    <!-- Marketing Icons Section -->
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100">
+          <h4 class="card-header">Body Shape</h4>
+          <div class="card-body">
+            <p class="card-text">The Body Type Calculator is designed for females to find their "body shape," which can be used for getting targeted outfit Ideas</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100">
+          <h4 class="card-header">Sales</h4>
+          <div class="card-body">
+            <p class="card-text">Let's see all the products in the 50% off</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100">
+          <h4 class="card-header">Club Card</h4>
+          <div class="card-body">
+            <p class="card-text">Use Club Card and enjoy the cheapest prices</p>
+          </div>
+          <div class="card-footer">
+            <a href="{% url 'joinClub'%}" class="btn btn-primary" >More Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
+{% endblock content %}

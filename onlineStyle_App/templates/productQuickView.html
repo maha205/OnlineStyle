@@ -1,0 +1,281 @@
+{% extends 'base_user.html' %}
+{% block content %}
+{%load static%}
+<style>
+
+/*****************globals*************/
+body {
+  font-family: 'open sans';
+  overflow-x: hidden; }
+
+img {
+  max-width: 70%; }
+
+.preview {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+  @media screen and (max-width: 996px) {
+    .preview {
+      margin-bottom: 20px; } }
+
+.preview-pic {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1; }
+
+.preview-thumbnail.nav-tabs {
+  border: none;
+  margin-top: 15px; }
+  .preview-thumbnail.nav-tabs li {
+    width: 18%;
+    margin-right: 2.5%; }
+    .preview-thumbnail.nav-tabs li img {
+      max-width: 100%;
+      display: block; }
+    .preview-thumbnail.nav-tabs li a {
+      padding: 0;
+      margin: 0; }
+    .preview-thumbnail.nav-tabs li:last-of-type {
+      margin-right: 0; }
+
+.tab-content {
+  overflow: hidden; }
+  .tab-content img {
+    width: 100%;
+    -webkit-animation-name: opacity;
+            animation-name: opacity;
+    -webkit-animation-duration: .3s;
+            animation-duration: .3s; }
+
+.card {
+  margin-top: 50px;
+  background: #eee;
+  padding: 3em;
+  line-height: 1.5em; }
+
+@media screen and (min-width: 997px) {
+  .wrapper {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex; } }
+
+.details {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+
+.colors {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1; }
+
+.product-title, .price, .sizes, .colors {
+  text-transform: UPPERCASE;
+  font-weight: bold; }
+
+.checked, .price span {
+  color: #ff9f1a; }
+
+.product-title, .rating, .product-description, .price, .vote, .sizes {
+  margin-bottom: 15px; }
+
+.product-title {
+  margin-top: 0; }
+
+.size {
+  margin-right: 10px; }
+  .size:first-of-type {
+    margin-left: 40px; }
+
+.color {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+  height: 2em;
+  width: 2em;
+  border-radius: 2px; }
+  .color:first-of-type {
+    margin-left: 20px; }
+
+.add-to-cart, .like {
+  background: #ff9f1a;
+  padding: 1.2em 1.5em;
+  border: none;
+  text-transform: UPPERCASE;
+  font-weight: bold;
+  color: #fff;
+  -webkit-transition: background .3s ease;
+          transition: background .3s ease; }
+  .add-to-cart:hover, .like:hover {
+    background: #b36800;
+    color: #fff; }
+
+.not-available {
+  text-align: center;
+  line-height: 2em; }
+  .not-available:before {
+    font-family: fontawesome;
+    content: "\f00d";
+    color: #fff; }
+
+.orange {
+  background: #ff9f1a; }
+
+.green {
+  background: #85ad00; }
+
+.blue {
+  background: #0076ad; }
+
+.tooltip-inner {
+  padding: 1.3em; }
+
+@-webkit-keyframes opacity {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(3);
+            transform: scale(3); }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1); } }
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(3);
+            transform: scale(3); }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1); } }
+
+/*# sourceMappingURL=style.css.map */
+</style>
+
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>eCommerce Product Detail</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+	<center>
+{% if messages %}
+ {% for message in messages %}
+ <div class="alert alert-warning alert-dismissable" role="alert">
+ <button class="close" data-dismiss="alert">
+ <small><sup>x</sup></small>
+ </button>
+ {{ message }}
+ </div>
+ {% endfor%}
+{% endif %}
+</center>
+
+	<div class="container">
+		<div class="card">
+			<div class="container-fliud">
+				<div class="wrapper row">
+					<div class="preview col-md-6">
+						
+						<div class="preview-pic tab-content">
+						  <div class="tab-pane active" ><img id="productImg" src="{% static 'e5088db4d07b54c0846acbff0e41666b.jpg' %}" /></div>
+						</div>
+						
+					</div>
+					<div class="details col-md-6">
+						<h3 class="product-title">{{item.title}}</h3>
+						<div class="rating">
+							<div class="stars">
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							</div>
+							<span class="review-no">41 reviews</span>
+						</div>
+						<p class="product-description">{{item.description}}</p>
+						<h4 class="price">current price: <span>{{price}}₪</span></h4>
+						<p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
+            
+						<h5 class="sizes" style="font-size: 15px;">sizes:
+
+							{%if item.qty_small == 0 %}<button type="button" class="like btn btn-default" style="color:black;" disabled >S</button>{%endif%}
+						  {%if item.qty_small > 0 %}<a style="color:black;" href ="{% url 'smallSize' item.id %}"><button type="button" class="like btn btn-default" style="color:black;" enabled >S</button></a>{%endif%}
+
+              {%if item.qty_medium == 0 %}<button type="button" class="like btn btn-default" style="color:black;" disabled>M</button>{%endif%}
+						  {%if item.qty_medium > 0 %}<a style="color:black;" href ="{% url 'mediumSize' item.id %}"><button type="button" class="like btn btn-default" style="color:black;"  enabled>M</button></a>{%endif%}
+
+              {%if item.qty_large == 0 %}<button type="button" class="like btn btn-default" style="color:black;" disabled>L</button>{%endif%}
+						  {%if item.qty_large > 0  %}<a style="color:black;" href ="{% url 'largeSize' item.id %}"><button type="button" class="like btn btn-default" style="color:black;" enabled >L</button></a>{%endif%}
+
+              {%if item.qty_xtraLarge == 0 %}<button type="button" class="like btn btn-default" style="color:black;" disabled>XL</button>{%endif%}
+						  {%if item.qty_xtraLarge > 0  %}<a style="color:black;" href ="{% url 'xtralargeSize' item.id %}"><button type="button" class="like btn btn-default" style="color:black;"  enabled>XL</button></a>{%endif%}
+              
+						</h5>
+						
+              <h5 class="colors" style="font-size: 15px;">Body Shapes:
+
+							<button onclick="document.getElementById('productImg').src='https://i.pinimg.com/originals/e5/08/8d/e5088db4d07b54c0846acbff0e41666b.jpg'" ><span><img class="pic-1" src="https://images.squarespace-cdn.com/content/v1/5b3f44a2fcf7fd13f511b443/1583229026776-37PUDMXISN5128IBRKW5/ke17ZwdGBToddI8pDm48kAf-OpKpNsh_OjjU8JOdDKBZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpzAFzFJoCInLPKyj9AG8yKe7-Q2aFvP177fkO9TY_-rz5WoqqTEZpmj4yDEOdwKV68/pear-triangle-body-shape.jpg" style="width:50; height:50;"></span></button>
+							<button onclick="document.getElementById('productImg').src='https://eu1rgn-api.samsungcloud.com/mors/v2/public/download/M0MZPYamERgwbWv6ObIS6YvO71FGM7vdrhsXKrGlzCbKoyh4o_200?auth_code=8429'" ><span><img class="pic-1" src="https://cl.wantable.com/image/upload/c_scale,w_500/v1537303079/blog/apple.jpg" style="width:50; height:50;"></span></button>							
+              <button onclick="document.getElementById('productImg').src='https://eu1rgn-api.samsungcloud.com/mors/v2/public/download/M0MUZLt0eowm3P2ZSEOJTYV0JqfI78H02eG3oLjwhcMPVncUq_200?auth_code=2883'" ><span><img class="pic-1" src="https://images.squarespace-cdn.com/content/v1/5b3f44a2fcf7fd13f511b443/1582022753274-D9JYOX6F3YI8DMK5C7ZJ/ke17ZwdGBToddI8pDm48kAf-OpKpNsh_OjjU8JOdDKBZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpzAFzFJoCInLPKyj9AG8yKe7-Q2aFvP177fkO9TY_-rz5WoqqTEZpmj4yDEOdwKV68/hourglass+bodyshape.jpg" style="width:50; height:50;"></span></button>
+							
+						</h5>
+
+              <h5 class="colors" style="font-size: 15px;">colors:
+              <!------ <span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span> ---------->
+              <!------ <span class="color green"></span> ---------->
+							<span class="color blue" style="background-color:black;"></span>
+						</h5>
+
+						<div class="action">
+              {%if item.qty_small  == 0 and  item.qty_medium == 0 and item.qty_large == 0 and item.qty_xtraLarge == 0 %} <button class="add-to-cart btn btn-default" type="button" style="background-color:#20222A; color:#FFC312;"  disabled><a style="background-color:#20222A; color:#FFC312;"  >add to cart</a></button> {%endif%}
+              {%if item.qty_small  != 0 or item.qty_medium != 0 or item.qty_large != 0 or item.qty_xtraLarge != 0 %} <button class="add-to-cart btn btn-default" type="button" style="background-color:#20222A; color:#FFC312;" ><a style="background-color:#20222A; color:#FFC312;" href="{% url 'Addcart' item.id %}" >add to cart</a></button> {%endif%}
+							<a href="{% url 'addWishlist' item.id %}" > <button class="like btn btn-default" type="button"><span class="fa fa-heart" style="color:black;"></a></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+  </body>
+</html>
+<script>
+
+
+function myFunction() {
+  document.getElementById("pic-1").innerHTML = <img  src="{% static 'BodyEditor_20200404_201043170.jpg' %}" />;
+}
+</script>
+{% endblock content %}

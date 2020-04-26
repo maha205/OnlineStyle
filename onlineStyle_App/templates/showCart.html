@@ -1,0 +1,139 @@
+{% extends 'base_user.html' %}
+{% block content %}
+<br/>
+<center>
+  <h1 style="font-family: 'Numans', sans-serif; color:090E24">Welcome  </h1>
+  <h5 style="font-family: 'Numans', sans-serif; color:090E24">Email :{{email}} </h5>
+<br/>
+</center>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<script src="https://use.fontawesome.com/c560c025cf.js"></script>
+<!------{{products}}---------->
+<!------{{my_user.email}}---------->
+<center>
+{% if messages %}
+ {% for message in messages %}
+ <div class="alert alert-warning alert-dismissable" role="alert">
+ <button class="close" data-dismiss="alert">
+ <small><sup>x</sup></small>
+ </button>
+ {{ message }}
+ </div>
+ {% endfor%}
+{% endif %}
+</center>
+
+<div class="container">
+   <div class="card shopping-cart">
+            <div class="card-header bg-dark text-light">
+                <i class="fa fa-shopping-cart" aria-hidden="true" style="color:#FFEF00"></i>
+                Shopping cart
+                <a href="{% url 'productsUser' current_category %}" class="btn btn-outline-info btn-sm pull-right" style="color:#FFEF00">Continue shopping</a>
+                <div class="clearfix"></div>
+            </div>
+            <div class="card-body">
+
+            {% for item in items%}
+            
+                    <!-- PRODUCT -->
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-2 text-center">
+                                <img class="img-responsive" src="https://i.pinimg.com/originals/e5/08/8d/e5088db4d07b54c0846acbff0e41666b.jpg" alt="prewiew" width="120" height="100">
+                        </div>
+                        <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
+                            <h4 class="product-name"><strong>{{item.title}}</strong></h4>
+                            <h4>
+                                <small>{{item.description}}</small>
+                            </h4>
+                        </div>
+                        <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
+                        
+                            <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
+                                <h6><strong>{{item.price}}₪ <span class="text-muted">x</span></strong></h6>
+
+                                {%for product in products%}
+                                       {%if item.id == product.product_id and product.SIZE == 1 and product.cartAvilable == 1 %}
+                                         <h6><strong>SIZE: S <span class="text-muted"></span></strong></h6>
+                                       {%endif%}
+
+                                        {%if item.id == product.product_id and product.SIZE == 2 and product.cartAvilable == 1 %}
+                                         <h6><strong>SIZE: M <span class="text-muted"></span></strong></h6>
+                                       {%endif%}
+
+                                        {%if item.id == product.product_id and product.SIZE == 3 and product.cartAvilable == 1 %}
+                                         <h6><strong>SIZE: L <span class="text-muted"></span></strong></h6>
+                                         {%endif%}
+
+                                        {%if item.id == product.product_id and product.SIZE == 4 and product.cartAvilable == 1 %}
+                                         <h6><strong>SIZE: XL <span class="text-muted"></span></strong></h6>
+                                         {%endif%}
+                                    {%endfor%}
+                    
+                    {% for productSale in saleList %}  
+                    {%if productSale.id == item.id and productSale.sale == True  %} <h6 style='color:red'><strong>SALE: {{productSale.discount}}% <span class="fas fa-tags" class="text-muted"></span></strong></h6> </span> {%endif%}
+                   {%endfor%}
+                         
+
+                            </div>
+                            
+                            <div class="col-4 col-sm-4 col-md-4">
+                                <div class="quantity">
+                                     {%for product in products%}
+                                       {%if item.id == product.product_id and product.cartAvilable == 1%}
+                                         <a href="{% url 'addQuantty_Cart' product.id%}" ><input type="button" value="+" class="plus"></a>
+                                         <input id="qty" name="qty" type="number" step="1" max="99" min="1" value="{{product.qty}}" title="Qty" class="qty"size="4" >
+                                         <a href="{% url 'subQuantty_Cart' product.id%}" ><input type="button" value="-" class="minus"></a>
+                                      {%endif%}
+                                    {%endfor%}
+                                
+                                </div>
+                            </div>
+                            <div class="col-2 col-sm-2 col-md-2 text-right">
+                                <a style="color:red" href="{% url 'deleteCart' item.id%}">  <i class="fa fa-trash" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- END PRODUCT -->
+                    {% endfor%}
+                
+
+
+                {% comment %} <div class="pull-right">
+                    <a href="" class="btn btn-outline-secondary pull-right">
+                        Update shopping cart
+                    </a>
+                </div> {% endcomment %}
+
+                <div class="pull-right" style="color:red">
+                {% if totalPrice > FreeShipping.FreeShipping_totalPrice and FreeShipping.FreeShipping_totalPrice != 0 %} <b>  Shipping : 0₪</b> {%endif%}
+                 {%if totalPrice < FreeShipping.FreeShipping_totalPrice or FreeShipping.FreeShipping_totalPrice == 0 %}   <b>  Shipping : {{FreeShipping.shippingPrice}}₪</b> {%endif%}
+                </div>
+
+
+            </div>
+            <div class="card-footer">
+                <div class="coupon col-md-5 col-sm-5 no-padding-left pull-left">
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="text" class="form-control" placeholder="cupone code">
+                        </div>
+                        <div class="col-6">
+                            <input type="submit" class="btn btn-default" value="Use cupone">
+                        </div>
+                    </div>
+                </div>
+                    
+                <div class="pull-right" style="margin: 10px">
+                    <a  href="{% url 'checkOut' %}" class="btn btn-success pull-right">Checkout</a>
+                    <div class="pull-right" style="margin: 5px">
+                        Total price: <b>{{totalPrice}}₪</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+{% endblock content %}

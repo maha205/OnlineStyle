@@ -1,0 +1,119 @@
+{% extends 'base_admin.html' %}
+{% block content %}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+<center>
+<br/>
+<h1 style="font-family: 'Numans', sans-serif; color:090E24">Discount Management</h1>
+</center> 
+
+<center>
+{% if messages %}
+ {% for message in messages %}
+ <div class="alert alert-warning alert-dismissable" role="alert">
+ <button class="close" data-dismiss="alert">
+ <small><sup>x</sup></small>
+ </button>
+ {{ message }}
+ </div>
+ {% endfor%}
+{% endif %}
+</center> 
+
+<table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+  <thead> 
+  <br/>
+  
+  
+    <tr>
+      <th class="th-sm" style="color:#F7EC09;background-color : #20222A;" ><center>Product title</center>
+      </th>
+
+      <th class="th-sm" style="color:#F7EC09;background-color : #20222A;" ><center>Description</center>
+      </th>
+
+      <th class="th-sm" style="color:#F7EC09;background-color : #20222A;" ><center>Price before sale</center>
+      </th>
+
+      <th class="th-sm" style="color:#F7EC09;background-color : #20222A;" ><center>Sale</center>
+      </th>
+
+      <th class="th-sm" style="color:#F7EC09;background-color : #20222A;" ><center>Price after sale</center>
+      </th>
+
+      <th class="th-sm" style="color:#F7EC09;background-color : #20222A;" ><center>Quantity Small</center>
+      </th>
+
+      <th class="th-sm" style="color:#F7EC09;background-color : #20222A;" ><center>Quantity Medium</center>
+      </th>
+
+      <th class="th-sm" style="color:#F7EC09;background-color : #20222A;" ><center>Quantity Large</center>
+      </th>
+
+      <th class="th-sm" style="color:#F7EC09;background-color : #20222A;" ><center>Quantity XtraLarge </center>
+      </th>
+
+      <th class="th-sm" style="color:#F7EC09;background-color : #20222A;" ><center>Image</center>
+      </th>
+    
+
+      <th class="th-sm" style="color:#F7EC09;background-color : #20222A;" ><center>Edit Sale</center>
+      </th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for item in all_products %}
+  <tr >
+  
+  <td><center></br>{{item.title}}<center></td>
+  <td><center></br>{{item.description}}<center></td>
+  <td><center></br>{{item.price}} ₪<center></td>
+  
+
+  {% for productSale in saleList %}  
+
+    {%if productSale.id == item.id and productSale.sale == True %} 
+    <td><center></br>{{productSale.discount}}%<center></td>
+    <td><center></br>{{productSale.price}} ₪ <center></td>
+    {%endif%}
+     
+     {%if productSale.id == item.id and productSale.sale == False %} 
+    <td><center></br> --- <center></td>
+    <td><center></br> --- <center></td>
+    {%endif%}
+
+ {%endfor%}
+
+  <td><center></br>{{item.qty_small}}<center></td>
+
+  <td><center></br>{{item.qty_medium}}<center></td>
+
+  <td><center></br>{{item.qty_large}}<center></td>
+
+  <td><center></br>{{item.qty_xtraLarge}}<center></td>
+
+
+  <td><center><img class="pic-1" src="https://i.pinimg.com/originals/e5/08/8d/e5088db4d07b54c0846acbff0e41666b.jpg" style="width:100; height:100;"><center></td>
+  
+   <td><center><a class="nav-link" href="{% url 'Editsale' item.id %}" style="color:#F7EC09">
+   </br>
+   <i class="fa  " style="color:black">
+   <span  class="fas fa-edit"  style="color:red"></span>
+   </i>
+   </a></center></td>
+  
+
+  </tr>
+  {%endfor%}
+
+    
+  </tbody>
+  
+</table>
+{% endblock content %}

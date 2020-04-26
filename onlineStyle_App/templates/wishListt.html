@@ -1,0 +1,173 @@
+{% extends 'base_user.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hello World</title>
+        <style>
+            html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                background-color: green;
+            }
+            #container {
+                width: inherit;
+                height: inherit;
+                margin: 0;
+                padding: 0;
+                background-color: pink;
+            }
+            h1 {
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+    </head
+</style>
+<center>
+{% if messages %}
+ {% for message in messages %}
+ <div class="alert alert-warning alert-dismissable" role="alert">
+ <button class="close" data-dismiss="alert">
+ <small><sup>x</sup></small>
+ </button>
+ {{ message }}
+ </div>
+ {% endfor%}
+{% endif %}
+</center>
+
+<br/>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<!------ Include the above in your HEAD tag ---------->
+<html>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>CART</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">SIZE</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                     {% for item in items%}
+
+                        <td class="col-sm-8 col-md-6">
+                        <div class="media">
+                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="https://i.pinimg.com/originals/e5/08/8d/e5088db4d07b54c0846acbff0e41666b.jpg" style="width: 72px; height: 72px;"> </a>
+                            <div class="media-body">
+                                <h4 class="media-heading"><a style='color:black' href="{% url 'productQuickView' item.id%}"> {{item.title}}</a></h4>
+                                <h6 class="media-heading">  <a style='color:black' href="#">{{item.description}}</a></h6>
+                                {%for product in products%}
+                                  {%if item.id == product.product_id and product.SIZE == 1 and item.qty_small != 0 %}
+                                  <span>Status: </span><span class="text-success"><strong >In Stock</strong></span>
+                                  {%endif%} 
+                                  {%if item.id == product.product_id and product.SIZE == 1 and item.qty_small == 0 %}
+                                  <span>Status: </span><span class="text-success"><strong style='color:red'>Out of Stock</strong></span>
+                                  {%endif%} 
+                                  {%if item.id == product.product_id and product.SIZE == 2 and item.qty_small != 0 %}
+                                  <span>Status: </span><span class="text-success"><strong >In Stock</strong></span>
+                                  {%endif%} 
+                                  {%if item.id == product.product_id and product.SIZE == 2 and item.qty_small == 0 %}
+                                  <span>Status: </span><span class="text-success"><strong style='color:red'>Out of Stock</strong></span>
+                                  {%endif%} 
+                                  {%if item.id == product.product_id and product.SIZE == 3 and item.qty_small != 0 %}
+                                  <span>Status: </span><span class="text-success"><strong >In Stock</strong></span>
+                                  {%endif%} 
+                                  {%if item.id == product.product_id and product.SIZE == 3 and item.qty_small == 0 %}
+                                  <span>Status: </span><span class="text-success"><strong style='color:red'>Out of Stock</strong></span>
+                                  {%endif%} 
+                                  {%if item.id == product.product_id and product.SIZE == 4 and item.qty_small != 0 %}
+                                  <span>Status: </span><span class="text-success"><strong >In Stock</strong></span>
+                                  {%endif%} 
+                                  {%if item.id == product.product_id and product.SIZE == 4 and item.qty_small == 0 %}
+                                  <span>Status: </span><span class="text-success"><strong style='color:red'>Out of Stock</strong></span>
+                                  {%endif%} 
+                                {%endfor%} 
+                            </div>
+                        </div></td>
+                        <td class="col-sm-1 col-md-1" style="text-align: center">
+                        <button type="button" class="btn btn-success">
+                         {%for product in products%}
+                                  {%if item.id == product.product_id and product.SIZE == 1 and item.qty_small != 0 %}
+                                    <a style='color:white'href="{% url 'cart' item.id%}" >Add To Cart <span class="glyphicon glyphicon-play"></span></a>
+                                  {%endif%}
+                                    {%if item.id == product.product_id and product.SIZE == 1 and item.qty_small == 0 %}
+                                       Add To Cart <span style='color:white' class="glyphicon glyphicon-play"></span>
+                                  {%endif%} 
+                                  {%if item.id == product.product_id and product.SIZE == 2 and item.qty_small != 0 %}
+                                    <a style='color:white'href="{% url 'cart' item.id%}" >Add To Cart <span class="glyphicon glyphicon-play"></span></a>
+                                  {%endif%} 
+                                  {%if item.id == product.product_id and product.SIZE == 2 and item.qty_small == 0 %}
+                                       Add To Cart <span style='color:white' class="glyphicon glyphicon-play"></span>
+                                  {%endif%} 
+                                  {%if item.id == product.product_id and product.SIZE == 3 and item.qty_small != 0 %}
+                                    <a style='color:white'href="{% url 'cart' item.id%}" >Add To Cart <span class="glyphicon glyphicon-play"></span></a>
+                                  {%endif%} 
+                                  {%if item.id == product.product_id and product.SIZE == 3 and item.qty_small == 0 %}
+                                       Add To Cart <span style='color:white' class="glyphicon glyphicon-play"></span>
+                                  {%endif%} 
+                                  {%if item.id == product.product_id and product.SIZE == 4 and item.qty_small != 0 %}
+                                    <a style='color:white'href="{% url 'cart' item.id%}" >Add To Cart <span class="glyphicon glyphicon-play"></span></a>
+                                  {%endif%} 
+                                  {%if item.id == product.product_id and product.SIZE == 4 and item.qty_small == 0 %}
+                                       Add To Cart <span style='color:white' class="glyphicon glyphicon-play"></span>
+                                  {%endif%} 
+                                {%endfor%}  
+                        </button></td>                        </td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>{{item.price}}₪</strong>
+                         {% for productSale in saleList %}  
+                           {%if productSale.id == item.id and productSale.sale == True  %}<strong style='color:red' class='fas fa-tags' > {{productSale.discount}}% <span <strong></span></strong></h6> </span></td> </a>{%endif%}
+                         {%endfor%}
+                         {%for product in products%}
+                            {%if item.id == product.product_id and product.SIZE == 1%}
+                                <td class="col-sm-1 col-md-1 text-center"><strong> S </strong></td>
+                            {%endif%}
+                            {%if item.id == product.product_id and product.SIZE == 2 %}
+                                <td class="col-sm-1 col-md-1 text-center"><strong> M </strong></td>
+                            {%endif%}
+
+                            {%if item.id == product.product_id and product.SIZE == 3%}
+                               <td class="col-sm-1 col-md-1 text-center"><strong>L</strong></td>
+                            {%endif%}
+
+                            {%if item.id == product.product_id and product.SIZE == 4 %}
+                               <td class="col-sm-1 col-md-1 text-center"><strong>XL</strong></td>
+                            {%endif%}
+                        {%endfor%}
+                        <td class="col-sm-1 col-md-1 text-center"><strong></strong></td>
+                        <td class="col-sm-1 col-md-1">
+                        <button type="button" class="btn btn-danger">
+                            <a style="color:white" href="{% url 'deletewish' item.id%}"><span class="glyphicon glyphicon-remove"></span> Remove
+                        </button></td></a>
+                    </tr>
+                    {%endfor%}
+    
+                        <button type="button" class="btn btn-default">
+                            <a href="{% url 'productsUser' current_category %}" class="btn btn-outline-info btn-sm pull-right" style="color:black"></span> Continue Shopping
+                        </button></td></a>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</html>
+{% endblock content %}
+
+

@@ -1,0 +1,180 @@
+{% extends 'base_admin.html' %}
+{% block content %}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+<center>
+<br/>
+<h1 style="font-family: 'Numans', sans-serif; color:090E24">Evening Black Dress all products</h1>
+</center> 
+
+<center>
+{% if messages %}
+ {% for message in messages %}
+ <div class="alert alert-warning alert-dismissable" role="alert">
+ <button class="close" data-dismiss="alert">
+ <small><sup>x</sup></small>
+ </button>
+ {{ message }}
+ </div>
+ {% endfor%}
+{% endif %}
+</center> 
+
+ <center>
+ <ul class="navbar-nav ">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'addItem' %}" style="color:black ; font-size: 30px;">
+          <i class="fa  " style="color:black; font-size: 30px;">
+            <span  class="fas fa-plus " style="color:black; ; font-size: 30px;"></span>
+          </i>
+          Add Items 
+        </a>
+      </li>
+      </ul>
+ </center>
+
+<table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+  <thead> 
+  <br/>
+  
+  
+    <tr>
+      <th class="th-sm" style="color:#F7EC09;background-color : #20222A;" ><center>Product title</center>
+      </th>
+
+      <th class="th-sm" style="color:#F7EC09;background-color : #20222A;" ><center>Description</center>
+      </th>
+
+      <th class="th-sm" style="color:#F7EC09;background-color : #20222A;" ><center>Price before sale</center>
+      </th>
+
+      <th class="th-sm" style="color:#F7EC09;background-color : #20222A;" ><center>Sale</center>
+      </th>
+
+      <th class="th-sm" style="color:#F7EC09;background-color : #20222A;" ><center>Price after sale</center>
+      </th>
+
+      <th class="th-sm" style="color:#F7EC09;background-color : #20222A;" ><center>Quantity Small</center>
+      </th>
+
+      <th class="th-sm" style="color:#F7EC09;background-color : #20222A;" ><center>Edit Small Quantity</center>
+      </th>
+
+      <th class="th-sm" style="color:#F7EC09;background-color : #20222A;" ><center>Quantity Medium</center>
+      </th>
+
+      <th class="th-sm" style="color:#F7EC09;background-color : #20222A;" ><center>Edit Medium Quantity</center>
+      </th>
+
+      <th class="th-sm" style="color:#F7EC09;background-color : #20222A;" ><center>Quantity Large</center>
+      </th>
+
+      <th class="th-sm" style="color:#F7EC09;background-color : #20222A;" ><center>Edit Large Quantity</center>
+      </th>
+
+      <th class="th-sm" style="color:#F7EC09;background-color : #20222A;" ><center>Quantity XtraLarge </center>
+      </th>
+
+      <th class="th-sm" style="color:#F7EC09;background-color : #20222A;" ><center>Edit XtraLarge Quantity</center>
+      </th>
+
+
+      <th class="th-sm" style="color:#F7EC09;background-color : #20222A;" ><center>Image</center>
+      </th>
+      
+      <th class="th-sm" style="color:#F7EC09;background-color : #20222A;" ><center>Special</center>
+      </th>
+
+      <th class="th-sm" style="color:#F7EC09;background-color : #20222A;" ><center>Delete item</center>
+      </th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for item in all_products %}
+  <tr >
+  
+  <td><center></br>{{item.title}}<center></td>
+  <td><center></br>{{item.description}}<center></td>
+  <td><center></br>{{item.price}} ₪<center></td>
+  
+
+  {% for productSale in saleList %}  
+
+    {%if productSale.id == item.id and productSale.sale == True %} 
+    <td><center></br>{{productSale.discount}}%<center></td>
+    <td><center></br>{{productSale.price}} ₪ <center></td>
+    {%endif%}
+     
+     {%if productSale.id == item.id and productSale.sale == False %} 
+    <td><center></br> --- <center></td>
+    <td><center></br> --- <center></td>
+    {%endif%}
+
+ {%endfor%}
+
+  <td><center></br>{{item.qty_small}}<center></td>
+    <td><center><a class="nav-link" href="{% url 'EditSmallQuantity' item.id %}" style="color:#F7EC09">
+   </br>
+   <i class="fa  " style="color:black">
+   <span  class="fas fa-truck-loading" style="color:black"></span>
+   </i>
+   </a></center></td>
+
+  <td><center></br>{{item.qty_medium}}<center></td>
+    <td><center><a class="nav-link" href="{% url 'EditMediumQuantity' item.id %}" style="color:#F7EC09">
+   </br>
+   <i class="fa  " style="color:black">
+   <span  class="fas fa-truck-loading" style="color:black"></span>
+   </i>
+   </a></center></td>
+
+  <td><center></br>{{item.qty_large}}<center></td>
+    <td><center><a class="nav-link" href="{% url 'EditLargeQuantity' item.id %}" style="color:#F7EC09">
+   </br>
+   <i class="fa  " style="color:black">
+   <span  class="fas fa-truck-loading" style="color:black"></span>
+   </i>
+   </a></center></td>
+
+  <td><center></br>{{item.qty_xtraLarge}}<center></td>
+    <td><center><a class="nav-link" href="{% url 'EditXtraLargeQuantity' item.id %}" style="color:#F7EC09">
+   </br>
+   <i class="fa  " style="color:black">
+   <span  class="fas fa-truck-loading" style="color:black"></span>
+   </i>
+   </a></center></td>
+
+  <td><center><img class="pic-1" src="https://i.pinimg.com/originals/e5/08/8d/e5088db4d07b54c0846acbff0e41666b.jpg" style="width:100; height:100;"><center></td>
+  
+  <td style="color:red"><center></br>
+
+   {% for productSale in saleList %}  
+       {%if productSale.id == item.id and productSale.sale == True %} <span class="product-new-label" >  Sale </span> {%endif%}
+    {%endfor%}
+
+   {%if item.qty_small  == 0 and  item.qty_medium == 0 and item.qty_large == 0 and item.qty_xtraLarge == 0  %} Sold Out! {%endif%}
+
+  </center></td>
+
+   <td><center><a class="nav-link" href="{% url 'deleteItem' item.id %}" style="color:#F7EC09">
+   </br>
+   <i class="fa  " style="color:black">
+   <span  class="fas fa-trash" style="color:red"></span>
+   </i>
+   </a></center></td>
+  
+
+  </tr>
+  {%endfor%}
+
+    
+  </tbody>
+  
+</table>
+{% endblock content %}

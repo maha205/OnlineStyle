@@ -1,0 +1,97 @@
+{% extends 'base_admin.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<!--Fontawesome CDN-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/modern-business.css" rel="stylesheet">
+
+</head>
+
+<body>
+{<center>
+{% if messages %}
+ {% for message in messages %}
+ <div class="alert alert-warning alert-dismissable" role="alert">
+ <button class="close" data-dismiss="alert">
+ <small><sup>x</sup></small>
+ </button>
+ {{ message }}
+ </div>
+ {% endfor%}
+{% endif %}
+</center>
+  <!-- Page Content -->
+  <div class="container">
+    <!-- Portfolio Item Row -->
+    <div class="row">
+
+      <div class="col-md-8">
+        <img class="img-fluid" src="{% static 'sale.PNG' %}" alt="">
+      </div>
+
+      <div class="col-md-4">
+     
+        <h3 class="my-3"> <u>  Sales Details  </u> </h3>
+        <ol >
+          <li >X % discount on top categories / products.</li>
+          <li>X % discount</li>
+          <li>Free shipping on purchase raises a certain amount or regardless of purchase height.</li>          
+          <li>Deals that appear to be limited in time but are not.</li>
+          <li>1+1 Buy from Wanted Categories Wanted.</li>
+          <li>Customer Club Specials.</li>
+          <li>Special Events.</li>
+          <li>Coupon-based promotions</li>
+        </ol>
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+    <!-- Related Projects Row -->
+   </br>
+   </br>
+   </br>
+   </br>
+   </br>
+   <a href="{% url "MangmentSales" %}" style="color:black">
+   <h3 class="fas fa-cog" class="my-4">  <u>  Sales management </u> </h3> </a>
+   </br>
+   </br>
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; OnlineStyle 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
+{% endblock content %}
